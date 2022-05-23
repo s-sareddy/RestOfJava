@@ -17,15 +17,60 @@ public class Program {
         // Draw a short red diagonal on the canvas
         canvas.pause();
         canvas.setColor(Color.red);
-        GetY y = (i)-> {
+        GetY sin = new GetY () {
+        	public int calcY(int i) {
         	return (int) (200 * Math.sin(Math.PI * i/360));
+        	}
+        	public Color getColor() {
+        		return Color.RED;
+        	}
         };
-        for (int i = -360; i < 360; i++) {
-            canvas.plot(i, y.calcY(i));
-        }
+        GetY quadratic = new GetY () {
+        	public int calcY(int x) {
+        		return  (int) ((x-200)  * (x+200) /250 ); 
+        	}
+        	public Color getColor() {
+        		return Color.green;
+        	}
+        };
+        GetY log = new GetY () {
+        	public int calcY(int x) {
+        		return (int) (20 * Math.log(x)); 
+        	}
+        	public Color getColor() {
+        		return Color.CYAN;
+        	}
+        };
+        GetY cubic = new GetY () {
+        	public int calcY(int x) {
+        		return (int) (Math.pow(x, 3)/200000); 
+        	}
+        	public Color getColor() {
+        		return Color.MAGENTA;
+        	}
+        };
 
-        // Pause and close the canvas then terminate the program.
+       
+        
+        GetY[] functions = {quadratic, sin, log, cubic};
+        
+        
+        plotFunction(functions);
+        plotFunction();
         canvas.pause();
         canvas.close();
-    }
+    }	
+	/** Plots a given function
+	 * 
+	 * @param function is the function to plot
+	 */
+	public static void plotFunction (GetY... functions) {
+		
+		for(int x = 0; x < functions.length; x++) {
+			canvas.setColor(functions[x].getColor());
+        for (int i = -360; i < 360; i++) {
+            canvas.plot(i, functions[x].calcY(i));
+        }
+		}
+	}
 }
