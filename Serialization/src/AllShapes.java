@@ -11,6 +11,7 @@ public class AllShapes {
     private Point _point;
     private Line _line;
     private Circle _circle;
+    private Circle _other;
     private Polygon _polygon;
 
     /**
@@ -19,7 +20,8 @@ public class AllShapes {
     public void createShapes() {
         _point = new Point(Color.RED, 40, 10);
         _line = new Line(Color.BLUE, 30, 15, 120, 80);
-        _circle = new Circle(Color.PINK, -100, 40, 60);
+        _other = new Circle(Color.MAGENTA, 50, -40, 60);
+        _circle = new Circle(Color.ORANGE, -100, 70, 60);
         _polygon = new Polygon(Color.GREEN,
                 new Point[] {
                         new Point(0, 0),
@@ -32,7 +34,7 @@ public class AllShapes {
      * Draws all the shapes on the canvas.
      */
     public void drawShapes(Canvas canvas) {
-        Shape[] _shapes = {_point, _line, _circle, _polygon };
+        Shape[] _shapes = {_point, _line, _circle, _polygon,_other };
         for (Shape s : _shapes) {
             s.draw(canvas);
         }

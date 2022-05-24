@@ -13,11 +13,13 @@ public class Shape {
     private int _rColor;
     private int _gColor;
     private int _bColor;
+    private String _type;
     
     public Shape(Color color) {
         _rColor = color.getRed();
         _gColor = color.getGreen();
         _bColor = color.getBlue();
+        _type = this.getClass().getName();
     }
     
     public void draw(Canvas canvas) {
